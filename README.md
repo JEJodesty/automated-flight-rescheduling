@@ -23,3 +23,27 @@ reduces congestion by using flight plans submitted by the airlines to reschedule
 take-off of flights when runways are congested. Although these operations are crucial to reduce runway
 congestion, these techniques can also contribute to the congestion it is intended to reduce due to the
 cyclical causality of flight delays and runway congestion.
+
+##### Proposal:
+I developed a scalable data pipeline using Apache Spark’s Scala API that can train a cross-validated
+Gradient Boosted Tree Regressor to estimate runway congestion time. When deployed, ATC can
+automate flight rescheduling and rerouting by providing an application with a model that feeds flight
+plans and airline leased terminal times as dependent variables, appling a function that choses the flight
+plan with the lowest estimated runway congestion time, and replies to airlines with modified flight
+plans. 
+
+##### Technology Suite:
+I used a Docker containerized distribution of Apache Spark to build the data pipeline. Although I’m
+spinning a single node cluster configuration and my dataset isn’t large, I have the ability to improve
+model performance by scaling the pipeline to connect to the head node of spun cluster to process more
+data. I used Spark's Scala API for data pre-processing, feature engineering, and machine learning, and
+model evaluation. I decided conducted exploratory data analysis and model evaluation within this
+container using Python’s Seaborn and SciKit-Learn.
+
+##### Dataset:
+I trained this model using "On-Time Performance" data provided by the United States Bureau of
+Transportation Statistics. This data contains domestic flight information by major airlines for non-stop
+domestic flights. In order to procure normally distributed data and avoid memory constraints of my
+personal machine, I filtered the dataset only include flights routed through airports in New York state
+and flights between November 2015 and October 2016 to encapsulate holidays that impact air and
+runway traffic.
