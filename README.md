@@ -29,7 +29,7 @@ cyclical causality of flight delays and runway congestion.
 I developed a scalable data pipeline using Apache Spark’s Scala API that can train a cross-validated
 Gradient Boosted Tree Regressor to estimate runway congestion time. When deployed, ATC can
 automate flight rescheduling and rerouting by providing an application with a model that feeds flight
-plans and airline leased terminal times as dependent variables, appling a function that choses the flight
+plans and airline leased terminal times as dependent variables, applying a function that chooses the flight
 plan with the lowest estimated runway congestion time, and replies to airlines with modified flight
 plans. 
 
